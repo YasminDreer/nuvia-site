@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidade — Nuvia</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #FAFAF8;
+      --surface:  #FFFFFF;
+      --text:     #3A2A25;
+      --muted:    #9E8880;
+      --accent:   #C28B7C;
+      --border:   #EDE5E2;
+      --blush:    #F5EFED;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+    .badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 3px 10px;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--blush) 0%, #EDE0DC 100%);
+      border-radius: 16px;
+      padding: 36px 32px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    .hero .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .updated {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+      background: rgba(255,255,255,0.7);
+      border-radius: 50px;
+      padding: 4px 14px;
+    }
+
+    /* ── Sections ── */
+    .section {
+      background: var(--surface);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 24px 28px;
+      margin-bottom: 16px;
+    }
+    .section h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section h2::before {
+      content: "";
+      display: block;
+      width: 4px;
+      height: 16px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .section p { color: var(--text); margin-bottom: 10px; }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .section ul li { padding-left: 20px; position: relative; color: var(--text); }
+    .section ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── Highlight box ── */
+    .highlight {
+      background: var(--blush);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      margin: 12px 0;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    /* ── Contact card ── */
+    .contact-card {
+      background: var(--accent);
+      color: #FFF;
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-top: 8px;
+      text-align: center;
+    }
+    .contact-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .contact-card a { color: #FFF; text-decoration: underline; font-size: 14px; }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 56px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); text-underline-offset: 3px; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      .container { padding: 28px 16px 60px; }
+      .section { padding: 20px 18px; }
+      .hero { padding: 28px 20px; }
+      .hero h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">nuvia<span>.</span></a>
+  <span class="badge">Privacidade</span>
+</header>
+
+<div class="container">
+
+  <div class="hero">
+    <h1>Política de Privacidade</h1>
+    <p class="subtitle">Nuvia Skincare AI</p>
+    <span class="updated">Última atualização: Maio de 2026</span>
+  </div>
+
+  <div class="section">
+    <h2>1. Responsável pelo tratamento</h2>
+    <p>A Nuvia é uma aplicação de cuidados de pele personalizada por inteligência artificial. O responsável pelo tratamento dos dados pessoais é a Nuvia.</p>
+    <p>Contacto para proteção de dados: <strong>privacidade@joinuvia.com</strong></p>
+  </div>
+
+  <div class="section">
+    <h2>2. Dados que recolhemos e base legal</h2>
+    <ul>
+      <li><strong>Dados de conta</strong> (email, password encriptada) — base legal: execução do contrato</li>
+      <li><strong>Perfil de pele</strong> (tipo, tom, idade, preocupações, condições, alergias, género) — base legal: execução do contrato / consentimento explícito</li>
+      <li><strong>Fotografias de progresso</strong> — base legal: consentimento explícito</li>
+      <li><strong>Dados de ciclo menstrual</strong> (se ativado voluntariamente) — base legal: consentimento explícito para dados de saúde (Art. 9 RGPD / Art. 11 LGPD)</li>
+      <li><strong>Dados de utilização</strong> (histórico de rotinas, streak) — base legal: interesse legítimo na melhoria do serviço</li>
+      <li><strong>Token de notificações push</strong> — base legal: consentimento</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>3. Como usamos os teus dados</h2>
+    <ul>
+      <li>Personalizar a tua rotina de skincare com IA</li>
+      <li>Analisar a evolução da tua pele ao longo do tempo</li>
+      <li>Enviar notificações de lembrete (apenas com a tua autorização expressa)</li>
+      <li>Melhorar os nossos algoritmos de forma anónima e agregada</li>
+      <li>Cumprir obrigações legais aplicáveis</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>4. Partilha de dados</h2>
+    <p>Não vendemos os teus dados pessoais a terceiros. Partilhamos apenas com:</p>
+    <ul>
+      <li><strong>Fornecedores de infraestrutura técnica</strong> (Railway, Anthropic) — sujeitos a acordos de proteção de dados</li>
+      <li><strong>RevenueCat</strong> — para gestão de subscrições in-app</li>
+      <li><strong>Autoridades competentes</strong> — quando exigido por lei</li>
+    </ul>
+    <div class="highlight">
+      Os fornecedores de IA (Anthropic) processam dados de pele para gerar rotinas personalizadas. Não armazenam dados identificáveis após o processamento.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>5. Transferências internacionais</h2>
+    <p>Os dados podem ser processados em servidores localizados fora da União Europeia e do Brasil (nomeadamente EUA). Estas transferências são realizadas ao abrigo de cláusulas contratuais-tipo aprovadas pela Comissão Europeia e com garantias equivalentes ao abrigo da LGPD.</p>
+  </div>
+
+  <div class="section">
+    <h2>6. Retenção de dados</h2>
+    <p>Os dados são conservados enquanto tiveres conta ativa. Ao eliminares a conta, todos os dados pessoais são apagados permanentemente dos nossos servidores no prazo de 30 dias. Dados anonimizados e agregados poderão ser conservados para fins estatísticos.</p>
+  </div>
+
+  <div class="section">
+    <h2>7. Os teus direitos</h2>
+    <p>Tens os seguintes direitos, exercíveis através de privacidade@joinuvia.com:</p>
+    <ul>
+      <li><strong>Acesso</strong> — saber que dados guardamos sobre ti</li>
+      <li><strong>Retificação</strong> — corrigir dados incorretos</li>
+      <li><strong>Eliminação</strong> ("direito a ser esquecido") — apagar a conta e todos os dados</li>
+      <li><strong>Portabilidade</strong> — exportar os teus dados em formato legível por máquina</li>
+      <li><strong>Restrição</strong> — limitar o tratamento em determinadas circunstâncias</li>
+      <li><strong>Oposição</strong> — opor-te ao tratamento baseado em interesse legítimo</li>
+      <li><strong>Retirada de consentimento</strong> — a qualquer momento, sem prejuízo da licitude do tratamento anterior</li>
+    </ul>
+    <div class="highlight">
+      Tens também o direito de apresentar reclamação à autoridade supervisora:<br>
+      <strong>Europa/Portugal:</strong> CNPD — <a href="https://www.cnpd.pt" target="_blank" rel="noopener">www.cnpd.pt</a><br>
+      <strong>Brasil:</strong> ANPD — <a href="https://www.gov.br/anpd" target="_blank" rel="noopener">www.gov.br/anpd</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>8. Segurança</h2>
+    <ul>
+      <li>Encriptação TLS/HTTPS em todas as comunicações</li>
+      <li>Passwords armazenadas com bcrypt (fator de custo 12)</li>
+      <li>Tokens JWT com expiração curta (15 minutos)</li>
+      <li>Fotografias com acesso restrito ao titular da conta</li>
+    </ul>
+    <p style="margin-top:10px;">Em caso de violação de dados que afete os teus direitos, serás notificado no prazo previsto pela lei aplicável.</p>
+  </div>
+
+  <div class="section">
+    <h2>9. Menores de idade</h2>
+    <p>A Nuvia não é destinada a menores de 14 anos. Não recolhemos conscientemente dados de menores de 14 anos. Se acreditares que recolhemos dados de um menor, contacta-nos imediatamente.</p>
+  </div>
+
+  <div class="section">
+    <h2>10. Cookies e rastreio</h2>
+    <p>A aplicação móvel não utiliza cookies. Não fazemos rastreio cross-app para fins publicitários. A RevenueCat pode utilizar identificadores de dispositivo para gestão de subscrições, ao abrigo da sua própria política de privacidade.</p>
+  </div>
+
+  <div class="section">
+    <h2>11. Alterações a esta política</h2>
+    <p>Em caso de alterações significativas, notificaremos os utilizadores através da aplicação com, pelo menos, 30 dias de antecedência. A data de "última atualização" é sempre actualizada.</p>
+  </div>
+
+  <div class="contact-card">
+    <h3>Questões sobre privacidade?</h3>
+    <a href="mailto:privacidade@joinuvia.com">privacidade@joinuvia.com</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Nuvia. Todos os direitos reservados.</p>
+  <p style="margin-top:6px;">
+    <a href="/terms.html">Termos de Utilização</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy.html">Política de Privacidade</a>
+  </p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Termos de Utilização — Nuvia</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #FAFAF8;
+      --surface:  #FFFFFF;
+      --text:     #3A2A25;
+      --muted:    #9E8880;
+      --accent:   #C28B7C;
+      --border:   #EDE5E2;
+      --blush:    #F5EFED;
+      --warning:  #FEF9ED;
+      --warning-border: #FDE68A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+    .badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 3px 10px;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--blush) 0%, #EDE0DC 100%);
+      border-radius: 16px;
+      padding: 36px 32px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    .hero .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .updated {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+      background: rgba(255,255,255,0.7);
+      border-radius: 50px;
+      padding: 4px 14px;
+    }
+
+    .section {
+      background: var(--surface);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 24px 28px;
+      margin-bottom: 16px;
+    }
+    .section h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section h2::before {
+      content: "";
+      display: block;
+      width: 4px;
+      height: 16px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .section p { color: var(--text); margin-bottom: 10px; }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .section ul li { padding-left: 20px; position: relative; color: var(--text); }
+    .section ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .warning {
+      background: var(--warning);
+      border: 1px solid var(--warning-border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin: 12px 0;
+      font-size: 14px;
+      color: #92400E;
+    }
+    .warning strong { display: block; margin-bottom: 4px; font-size: 15px; }
+
+    .highlight {
+      background: var(--blush);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      margin: 12px 0;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .subscription-box {
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin: 12px 0;
+      font-size: 14px;
+      color: #14532D;
+    }
+    .subscription-box strong { display: block; margin-bottom: 6px; font-size: 15px; }
+
+    .contact-card {
+      background: var(--accent);
+      color: #FFF;
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-top: 8px;
+      text-align: center;
+    }
+    .contact-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .contact-card a { color: #FFF; text-decoration: underline; font-size: 14px; }
+
+    footer {
+      margin-top: 56px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); text-underline-offset: 3px; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      .container { padding: 28px 16px 60px; }
+      .section { padding: 20px 18px; }
+      .hero { padding: 28px 20px; }
+      .hero h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">nuvia<span>.</span></a>
+  <span class="badge">Termos</span>
+</header>
+
+<div class="container">
+
+  <div class="hero">
+    <h1>Termos de Utilização</h1>
+    <p class="subtitle">Nuvia Skincare AI</p>
+    <span class="updated">Última atualização: Maio de 2026</span>
+  </div>
+
+  <div class="section">
+    <h2>1. Aceitação dos termos</h2>
+    <p>Ao descarregar, instalar ou utilizar a aplicação Nuvia, aceitas estes Termos de Utilização na íntegra. Se não concordares com algum ponto, deves cessar imediatamente a utilização da aplicação e eliminar a conta.</p>
+  </div>
+
+  <div class="section">
+    <h2>2. Descrição do serviço</h2>
+    <p>A Nuvia é uma aplicação de skincare personalizado por inteligência artificial. Fornece recomendações educativas com base no perfil de pele declarado pelo utilizador, incluindo tipo de pele, preocupações e condições. <strong>A Nuvia não é um serviço médico.</strong></p>
+  </div>
+
+  <div class="section">
+    <h2>3. Requisitos de conta</h2>
+    <ul>
+      <li>Deves ter pelo menos <strong>14 anos</strong> para criar uma conta</li>
+      <li>É tua responsabilidade manter as credenciais de acesso em segurança</li>
+      <li>Cada utilizador pode ter apenas uma conta ativa</li>
+      <li>Não é permitido partilhar ou ceder o acesso à tua conta</li>
+      <li>Deves fornecer informações verdadeiras e atualizadas no registo</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>4. Uso aceitável</h2>
+    <p>Ao utilizar a Nuvia, comprometes-te a não:</p>
+    <ul>
+      <li>Utilizar a aplicação para fins ilegais ou que violem direitos de terceiros</li>
+      <li>Tentar aceder a dados ou contas de outros utilizadores</li>
+      <li>Fazer engenharia reversa, descompilar ou modificar o software</li>
+      <li>Utilizar sistemas automatizados para sobrecarregar os servidores</li>
+      <li>Publicar conteúdo falso, enganoso ou prejudicial</li>
+      <li>Contornar medidas de segurança ou limites de utilização</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>5. Propriedade intelectual</h2>
+    <p>Todo o conteúdo da Nuvia — incluindo algoritmos de IA, design de interface, textos, imagens e logótipos — é propriedade exclusiva da Nuvia e está protegido por legislação de direitos de autor e propriedade intelectual. É proibida a reprodução, distribuição ou utilização comercial sem autorização escrita prévia.</p>
+  </div>
+
+  <div class="section">
+    <h2>6. Isenção de responsabilidade médica</h2>
+    <div class="warning">
+      <strong>⚠️ Aviso importante</strong>
+      As recomendações da Nuvia são exclusivamente educativas e informativas. Não substituem diagnóstico, tratamento ou conselho de um dermatologista ou qualquer outro profissional de saúde qualificado.
+    </div>
+    <p>Consulta sempre um médico para questões relacionadas com a tua saúde, condições cutâneas ou alergias. A Nuvia não é responsável por decisões de saúde tomadas com base nas suas recomendações.</p>
+  </div>
+
+  <div class="section">
+    <h2>7. Limitação de responsabilidade</h2>
+    <p>A Nuvia não se responsabiliza por:</p>
+    <ul>
+      <li>Reações cutâneas resultantes da utilização de produtos recomendados — recomendamos fazer sempre um <em>patch test</em> antes de usar novos produtos</li>
+      <li>Disponibilidade contínua do serviço (manutenções programadas ou incidentes técnicos)</li>
+      <li>Perdas de dados resultantes de uso indevido do dispositivo</li>
+    </ul>
+    <p style="margin-top:10px;">Antes de adquirir qualquer produto, verifica sempre a lista de ingredientes completa, especialmente se tiveres alergias conhecidas.</p>
+  </div>
+
+  <div class="section">
+    <h2>8. Subscrição Premium e pagamentos</h2>
+    <p>A subscrição Premium é gerida exclusivamente pela Apple App Store (iOS) ou Google Play (Android).</p>
+
+    <div class="subscription-box">
+      <strong>🔄 Renovação automática</strong>
+      A subscrição renova-se automaticamente no final de cada período (mensal ou anual), salvo cancelamento com pelo menos <strong>24 horas de antecedência</strong> relativamente ao fim do período atual.
+    </div>
+
+    <ul>
+      <li><strong>Cancelamento:</strong> gere e cancela a subscrição nas Definições da Conta da App Store / Google Play</li>
+      <li>O período de experimentação gratuita aplica-se apenas a novos subscritores. A subscrição é ativada automaticamente no final do período de teste, salvo cancelamento antes</li>
+      <li>Os pagamentos são processados diretamente pela Apple ou Google — a Nuvia não armazena dados de pagamento</li>
+      <li>Os preços podem variar por região, conforme as políticas das lojas de aplicações</li>
+      <li>Não são emitidos reembolsos pelo período não utilizado após cancelamento, exceto se exigido por lei</li>
+    </ul>
+
+    <div class="highlight">
+      Ao adquirir a subscrição Premium na App Store, reconheces que leste e aceitaste o <a href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener">Contrato de Licença do Utilizador Final da Apple Media Services</a>.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>9. Suspensão e rescisão</h2>
+    <p>A Nuvia reserva-se o direito de suspender ou eliminar contas que violem estes termos, sem aviso prévio em casos graves (fraude, abuso, violação de segurança). Em casos menos graves, tentaremos notificar antes de agir.</p>
+    <p style="margin-top:10px;">Podes eliminar a tua conta a qualquer momento através de <strong>Perfil → Definições → Eliminar conta</strong>. A eliminação é imediata e irreversível.</p>
+  </div>
+
+  <div class="section">
+    <h2>10. Alterações aos termos</h2>
+    <p>Podemos atualizar estes termos. Em caso de alterações significativas, notificaremos os utilizadores através da aplicação com, no mínimo, <strong>30 dias de antecedência</strong>. A utilização continuada após a data de entrada em vigor dos novos termos constitui aceitação.</p>
+  </div>
+
+  <div class="section">
+    <h2>11. Lei aplicável e resolução de litígios</h2>
+    <p>Estes termos são regidos pela lei portuguesa, sem prejuízo das normas de proteção do consumidor aplicáveis no país de residência do utilizador.</p>
+    <p style="margin-top:10px;">Para utilizadores no Brasil, aplicam-se também as disposições do Código de Defesa do Consumidor (Lei n.º 8.078/90) e da LGPD (Lei n.º 13.709/2018).</p>
+    <p style="margin-top:10px;">Qualquer litígio que não possa ser resolvido amigavelmente será submetido à jurisdição dos tribunais portugueses, ou ao foro do domicílio do consumidor quando a lei o exigir.</p>
+  </div>
+
+  <div class="contact-card">
+    <h3>Questões sobre os termos?</h3>
+    <a href="mailto:termos@joinuvia.com">termos@joinuvia.com</a>
+    <p style="margin-top:8px; font-size:13px; opacity:0.85;">Privacidade: <a href="mailto:privacidade@joinuvia.com">privacidade@joinuvia.com</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Nuvia. Todos os direitos reservados.</p>
+  <p style="margin-top:6px;">
+    <a href="/terms.html">Termos de Utilização</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy.html">Política de Privacidade</a>
+  </p>
+</footer>
+
+</body>
+</html>

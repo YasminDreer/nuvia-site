@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nuvia — A tua rotina de skincare criada pela IA para a tua pele. Personalizada, inteligente e feita só para ti." />
+  <title>Nuvia — Skincare criada pela IA para ti</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset & base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #FAFAF8;
+      --surface:  #FFFFFF;
+      --primary:  #C28B7C;
+      --primary-dark: #A97265;
+      --text:     #3A2A25;
+      --muted:    #9E8880;
+      --blush:    #F5EFED;
+      --blush-dark: #EDE0DC;
+      --border:   #EDE5E2;
+      --cream:    #F0EAE4;
+
+      --ff-heading: 'Playfair Display', Georgia, serif;
+      --ff-body:    'DM Sans', system-ui, sans-serif;
+
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+      --radius-full: 999px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-body);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Scroll animation ─────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── Layout helpers ───────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       NAVBAR
+    ══════════════════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250, 250, 248, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .nav.scrolled { border-bottom-color: var(--border); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: var(--ff-heading);
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: -0.3px;
+    }
+    .nav-logo span { color: var(--primary); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #FFF;
+      font-family: var(--ff-body);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      text-decoration: none;
+    }
+    .nav-cta:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    /* ══════════════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════════════ */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 64px;
+    }
+
+    /* Organic background blobs */
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 640px;
+      height: 640px;
+      background: radial-gradient(circle, rgba(194,139,124,0.13) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -80px;
+      right: -160px;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(245,239,237,0.9) 0%, transparent 70%);
+      border-radius: 50%;
+      bottom: -40px;
+      left: -120px;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      padding: 80px 0;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow::before {
+      content: "";
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--primary);
+    }
+
+    .hero-title {
+      font-family: var(--ff-heading);
+      font-size: clamp(38px, 6vw, 68px);
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--text);
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--muted);
+      font-weight: 400;
+      margin-bottom: 40px;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #FFF;
+      font-family: var(--ff-body);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 34px;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(194,139,124,0.35);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+      opacity: 0.6;
+    }
+
+    /* Decorative skin-tones bar */
+    .hero-tones {
+      display: flex;
+      gap: 6px;
+      margin-top: 56px;
+      align-items: center;
+    }
+    .hero-tones-label {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      margin-right: 4px;
+    }
+    .tone {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 1px rgba(58,42,37,0.1);
+    }
+
+    /* ══════════════════════════════════════════════════════
+       SECTION SHARED
+    ══════════════════════════════════════════════════════ */
+    .section { padding: 96px 0; }
+    .section-alt { background: var(--surface); }
+
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: var(--ff-heading);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+    .section-title em { font-style: italic; color: var(--primary); }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       COMO FUNCIONA
+    ══════════════════════════════════════════════════════ */
+    .steps-header { margin-bottom: 64px; }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      position: relative;
+    }
+
+    /* Connecting line between steps */
+    .steps-grid::before {
+      content: "";
+      position: absolute;
+      top: 28px;
+      left: calc(16.66% + 28px);
+      right: calc(16.66% + 28px);
+      height: 1px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--blush-dark) 50%, var(--primary) 100%);
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .step-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      position: relative;
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s;
+    }
+    .step-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(58,42,37,0.07);
+    }
+
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--blush);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff-heading);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+
+    .step-title {
+      font-family: var(--ff-heading);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .step-body {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       BENEFÍCIOS
+    ══════════════════════════════════════════════════════ */
+    .benefits-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .benefits-header .section-sub {
+      margin: 0 auto;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .benefit-card {
+      background: var(--blush);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s;
+    }
+    .benefit-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(194,139,124,0.15);
+    }
+    .benefit-card:nth-child(2) { background: var(--cream); }
+    .benefit-card:nth-child(3) { background: var(--cream); }
+    .benefit-card:nth-child(4) { background: var(--blush); }
+
+    .benefit-emoji {
+      font-size: 36px;
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .benefit-title {
+      font-family: var(--ff-heading);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .benefit-body {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       LISTA DE ESPERA
+    ══════════════════════════════════════════════════════ */
+    .waitlist {
+      background: var(--primary);
+      padding: 96px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .waitlist::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -200px;
+      right: -100px;
+      pointer-events: none;
+    }
+    .waitlist::after {
+      content: "";
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0,0,0,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      bottom: -100px;
+      left: -80px;
+      pointer-events: none;
+    }
+
+    .waitlist-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .waitlist-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .waitlist-title {
+      font-family: var(--ff-heading);
+      font-size: clamp(30px, 4.5vw, 48px);
+      font-weight: 500;
+      color: #FFF;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .waitlist-title em { font-style: italic; opacity: 0.85; }
+
+    .waitlist-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .waitlist-sub strong { color: #FFF; font-weight: 600; }
+
+    /* ── Brevo embed wrapper ── */
+    .waitlist-form-wrap {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /*
+      ┌─────────────────────────────────────────────────────────┐
+      │  BREVO INTEGRATION                                       │
+      │                                                          │
+      │  1. Vai a brevo.com → Contatos → Formulários             │
+      │  2. Cria um formulário "Lista de Espera Nuvia"           │
+      │  3. Adiciona apenas o campo Email                        │
+      │  4. Em "Opções de incorporação" copia o "Embed code"     │
+      │  5. Substitui todo o bloco .waitlist-form-wrap           │
+      │     pelo teu <div class="sib-form"> gerado pelo Brevo   │
+      │                                                          │
+      │  Enquanto não tens o embed, o formulário abaixo          │
+      │  já funciona visualmente para demo.                      │
+      └─────────────────────────────────────────────────────────┘
+    */
+    .waitlist-form {
+      display: flex;
+      gap: 10px;
+    }
+
+    .waitlist-input {
+      flex: 1;
+      padding: 16px 20px;
+      border-radius: var(--radius-full);
+      border: none;
+      background: rgba(255,255,255,0.18);
+      color: #FFF;
+      font-family: var(--ff-body);
+      font-size: 15px;
+      outline: none;
+      transition: background 0.2s;
+      backdrop-filter: blur(8px);
+    }
+    .waitlist-input::placeholder { color: rgba(255,255,255,0.55); }
+    .waitlist-input:focus { background: rgba(255,255,255,0.26); }
+
+    .waitlist-btn {
+      flex-shrink: 0;
+      padding: 16px 28px;
+      background: #FFF;
+      color: var(--primary-dark);
+      font-family: var(--ff-body);
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s;
+      white-space: nowrap;
+    }
+    .waitlist-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .waitlist-fine {
+      margin-top: 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* ── Success state (toggled via JS) ── */
+    .waitlist-success {
+      display: none;
+      text-align: center;
+      padding: 24px;
+      background: rgba(255,255,255,0.15);
+      border-radius: var(--radius-md);
+      backdrop-filter: blur(8px);
+    }
+    .waitlist-success.show { display: block; }
+    .waitlist-success p {
+      color: #FFF;
+      font-size: 17px;
+      font-weight: 500;
+    }
+    .waitlist-success span { font-size: 32px; display: block; margin-bottom: 10px; }
+
+    /* ══════════════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════════════ */
+    .footer {
+      background: var(--text);
+      padding: 48px 0 36px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 28px;
+    }
+
+    .footer-brand {}
+    .footer-logo {
+      font-family: var(--ff-heading);
+      font-size: 22px;
+      font-weight: 500;
+      color: #FFF;
+      letter-spacing: -0.3px;
+      margin-bottom: 8px;
+    }
+    .footer-logo span { color: var(--primary); }
+    .footer-tagline {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      max-width: 200px;
+      line-height: 1.6;
+    }
+
+    .footer-links-group { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .footer-link {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: #FFF; }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .footer-social a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+    .footer-social a:hover { color: var(--primary); }
+
+    /* ══════════════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .section { padding: 64px 0; }
+      .waitlist { padding: 72px 0; }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .steps-grid::before { display: none; }
+
+      .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .waitlist-form {
+        flex-direction: column;
+      }
+      .waitlist-btn { width: 100%; justify-content: center; }
+
+      .footer-inner { flex-direction: column; gap: 36px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+
+      .hero-tones { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 18px; }
+      .nav-inner { height: 56px; }
+      .nav-cta { padding: 9px 16px; font-size: 13px; }
+      .hero-inner { padding: 60px 0; }
+      .step-card { padding: 28px 22px; }
+      .benefit-card { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════ -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">nuvia<span>.</span></a>
+        <a href="#lista-espera" class="nav-cta">Entrar na lista</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+
+        <p class="hero-eyebrow reveal">Skincare com IA</p>
+
+        <h1 class="hero-title reveal reveal-delay-1">
+          A tua rotina de skincare,<br>
+          criada pela <em>IA</em><br>
+          para a tua pele.
+        </h1>
+
+        <p class="hero-subtitle reveal reveal-delay-2">
+          Personalizada. Inteligente. Feita só para ti.
+        </p>
+
+        <div class="hero-actions reveal reveal-delay-3">
+          <a href="#lista-espera" class="btn-primary">
+            Entrar na lista de espera
+          </a>
+          <span class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Em breve na App Store
+          </span>
+        </div>
+
+        <div class="hero-tones reveal reveal-delay-4" aria-hidden="true">
+          <span class="hero-tones-label">Para todas as peles</span>
+          <span class="tone" style="background:#FDDBB4;"></span>
+          <span class="tone" style="background:#E8B88A;"></span>
+          <span class="tone" style="background:#C68642;"></span>
+          <span class="tone" style="background:#8D5524;"></span>
+          <span class="tone" style="background:#4A2912;"></span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       COMO FUNCIONA
+  ══════════════════════════════════════ -->
+  <section class="section section-alt" id="como-funciona">
+    <div class="container">
+
+      <div class="steps-header reveal">
+        <span class="section-label">Como funciona</span>
+        <h2 class="section-title">3 passos para uma pele <em>transformada</em></h2>
+        <p class="section-sub">Sem complicações. A Nuvia faz o trabalho difícil por ti.</p>
+      </div>
+
+      <div class="steps-grid">
+
+        <div class="step-card reveal reveal-delay-1">
+          <div class="step-num">1</div>
+          <h3 class="step-title">Respondes ao quiz</h3>
+          <p class="step-body">A IA analisa o teu tipo de pele, preocupações, alergias e estilo de vida para construir o teu perfil único.</p>
+        </div>
+
+        <div class="step-card reveal reveal-delay-2">
+          <div class="step-num">2</div>
+          <h3 class="step-title">A IA cria a tua rotina</h3>
+          <p class="step-body">Recebes uma rotina matinal e noturna personalizada, com os melhores ingredientes e a ordem correta de aplicação.</p>
+        </div>
+
+        <div class="step-card reveal reveal-delay-3">
+          <div class="step-num">3</div>
+          <h3 class="step-title">A tua pele transforma-se</h3>
+          <p class="step-body">Acompanha o progresso com fotos semanais. A rotina ajusta-se automaticamente conforme a tua pele evolui.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       BENEFÍCIOS
+  ══════════════════════════════════════ -->
+  <section class="section" id="beneficios">
+    <div class="container">
+
+      <div class="benefits-header reveal">
+        <span class="section-label">Funcionalidades</span>
+        <h2 class="section-title">Tudo o que a tua pele <em>precisa</em></h2>
+        <p class="section-sub">Uma experiência de skincare completa, inteligente e feita para durar.</p>
+      </div>
+
+      <div class="benefits-grid">
+
+        <div class="benefit-card reveal reveal-delay-1">
+          <span class="benefit-emoji">🔍</span>
+          <h3 class="benefit-title">Scanner de ingredientes</h3>
+          <p class="benefit-body">Fotografa qualquer produto e descobre em segundos se os ingredientes são seguros para o teu perfil — e se funcionam juntos.</p>
+        </div>
+
+        <div class="benefit-card reveal reveal-delay-2">
+          <span class="benefit-emoji">🌙</span>
+          <h3 class="benefit-title">Adaptada ao teu ciclo</h3>
+          <p class="benefit-body">A tua pele muda ao longo do mês. A Nuvia ajusta a rotina conforme as fases do teu ciclo menstrual para o máximo resultado.</p>
+        </div>
+
+        <div class="benefit-card reveal reveal-delay-3">
+          <span class="benefit-emoji">📸</span>
+          <h3 class="benefit-title">Progresso fotográfico</h3>
+          <p class="benefit-body">Regista fotos de progresso e vê a evolução da tua pele semana a semana. A IA analisa e comenta as melhorias.</p>
+        </div>
+
+        <div class="benefit-card reveal reveal-delay-4">
+          <span class="benefit-emoji">🌍</span>
+          <h3 class="benefit-title">Para todas as peles</h3>
+          <p class="benefit-body">Pele negra, clara, mista, sensível ou oleosa — a Nuvia foi pensada para funcionar com qualquer tom e tipo de pele.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       LISTA DE ESPERA
+  ══════════════════════════════════════ -->
+  <section class="waitlist" id="lista-espera">
+    <div class="container">
+      <div class="waitlist-inner">
+
+        <span class="waitlist-eyebrow reveal">Acesso antecipado</span>
+
+        <h2 class="waitlist-title reveal reveal-delay-1">
+          Sê uma das <em>primeiras</em>
+        </h2>
+
+        <p class="waitlist-sub reveal reveal-delay-2">
+          Junta-te à lista de espera e recebe acesso antecipado<br>
+          + <strong>1 mês Premium grátis</strong> quando lançarmos.
+        </p>
+
+        <div class="waitlist-form-wrap reveal reveal-delay-3">
+
+          <!--
+            TODO: Substitui este bloco pelo embed do Brevo
+            quando tiveres o snippet gerado (ver instruções no CSS acima).
+          -->
+          <form class="waitlist-form" id="waitlistForm" onsubmit="handleWaitlist(event)">
+            <input
+              class="waitlist-input"
+              type="email"
+              name="email"
+              placeholder="o-teu@email.com"
+              required
+              autocomplete="email"
+            />
+            <button type="submit" class="waitlist-btn">Quero entrar</button>
+          </form>
+
+          <div class="waitlist-success" id="waitlistSuccess">
+            <span>🎉</span>
+            <p>Estás na lista! Vemo-nos em breve.</p>
+          </div>
+
+          <p class="waitlist-fine">Sem spam. Podes cancelar a qualquer momento.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-brand">
+          <p class="footer-logo">nuvia<span>.</span></p>
+          <p class="footer-tagline">Skincare personalizado por IA para a tua pele única.</p>
+        </div>
+
+        <div class="footer-links-group">
+          <p class="footer-links-title">Legal</p>
+          <a href="/privacy.html" class="footer-link">Política de Privacidade</a>
+          <a href="/terms.html" class="footer-link">Termos de Utilização</a>
+        </div>
+
+        <div class="footer-links-group">
+          <p class="footer-links-title">Contacto</p>
+          <a href="https://instagram.com/join.nuvia" target="_blank" rel="noopener" class="footer-link">@join.nuvia</a>
+          <a href="mailto:contato@joinuvia.com" class="footer-link">contato@joinuvia.com</a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Nuvia. Todos os direitos reservados.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/join.nuvia" target="_blank" rel="noopener">Instagram</a>
+          <a href="/privacy.html">Privacidade</a>
+          <a href="/terms.html">Termos</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════
+       SCRIPTS
+  ══════════════════════════════════════ -->
+  <script>
+    // ── Navbar scroll shadow ──
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // ── Intersection Observer — fade in on scroll ──
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach((el) => observer.observe(el));
+
+    // ── Waitlist form (placeholder handler) ──
+    // When integrating Brevo, remove this function and the onsubmit attribute.
+    function handleWaitlist(e) {
+      e.preventDefault();
+      const form    = document.getElementById('waitlistForm');
+      const success = document.getElementById('waitlistSuccess');
+      form.style.display    = 'none';
+      success.classList.add('show');
+    }
+  </script>
+</body>
+</html>
